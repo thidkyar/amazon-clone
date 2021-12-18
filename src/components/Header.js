@@ -5,7 +5,11 @@ import {
     ShoppingCartIcon,
 } from "@heroicons/react/outline";
 
+import { signIn, signOut, useSession } from "next-auth/react";
+
 function Header() {
+    const { data: session } = useSession();
+
     return (
         <header>
             <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
@@ -26,16 +30,16 @@ function Header() {
                     <SearchIcon className="h-12 p-4" />
                 </div>
                 <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
-                    <divclass className="link">
-                        <p>Hello, Taranvir</p>
+                    <div onClick={session ? signOut : signIn} className="link">
+                        <p>{session ? `Hello, ${session.user.name}` : 'Sign In'}</p>
                         <p className="font-extrabold md:text-sm">
                             Account & Lists
                         </p>
-                    </divclass>
-                    <divclass className="link">
+                    </div>
+                    <div className="link">
                         <p>Returns</p>
                         <p className="font-extrabold md:text-sm">& Orders</p>
-                    </divclass>
+                    </div>
                     <div className="relative link flex items-center">
                         <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full text-black font-bold">
                             0
@@ -60,7 +64,9 @@ function Header() {
                 <p className="link hidden lg:inline-flex">Prime</p>
                 <p className="link hidden lg:inline-flex">Buy Again</p>
                 <p className="link hidden lg:inline-flex">Shopper Tookit</p>
-                <p className="link hidden lg:inline-flex">Health & Personal Care</p>
+                <p className="link hidden lg:inline-flex">
+                    Health & Personal Care
+                </p>
             </div>
         </header>
     );
