@@ -73,14 +73,14 @@ function CheckoutProduct({
             </div>
             {/* RIGHT ADD/REMOVE BUTTON */}
             <div className="flex flex-col space-y-2 my-auto justify-self-end">
-                <div className="flex flex-row items-center space-x-2">
+                <div className="flex flex-row justify-between items-center text-center">
                     <button
                         className="button"
                         onClick={() => dispatch(removeQuantity({ id }))}
                     >
                         -
                     </button>
-                    <p>Quantity: {quantity}</p>
+                    <p className="w-full">Quantity: {quantity}</p>
                     <button
                         className="button"
                         onClick={() => dispatch(addQuantity({ id }))}
