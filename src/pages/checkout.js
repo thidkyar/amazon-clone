@@ -11,7 +11,6 @@ function Checkout() {
     const total = useSelector(selectTotal)
     const { data: session } = useSession();
 
-    console.log(items);
     return (
         <div className="bg-gray-100">
             <Header />
@@ -42,6 +41,7 @@ function Checkout() {
                                 category={item.category}
                                 image={item.image}
                                 hasPrime={item.hasPrime}
+                                quantity={item.quantity}
                             />
                         ))}
                     </div>
