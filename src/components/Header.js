@@ -9,6 +9,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { selectItems } from "../slices/basketSlice";
 import { useSelector } from "react-redux";
+import { route } from "next/dist/server/router";
 
 function Header() {
     const { data: session } = useSession();
@@ -46,7 +47,7 @@ function Header() {
                             Account & Lists
                         </p>
                     </div>
-                    <div className="link">
+                    <div onClick={() => session && router.push('/orders')} className="link">
                         <p>Returns</p>
                         <p className="font-extrabold md:text-sm">
                             & Orders
