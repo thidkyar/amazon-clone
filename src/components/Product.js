@@ -24,6 +24,7 @@ function Product({ id, title, price, description, category, image }) {
             pauseOnHover: false,
             autoClose: 3000,
             theme: "colored",
+            position: "bottom-right",
         });
 
     const addItemToBasket = () => {
