@@ -38,6 +38,7 @@ function Orders({ orders }) {
                                 items={items}
                                 timestamp={timestamp}
                                 images={images}
+                                totalQuantity={items.reduce((acc,curr)=>acc.quantity + curr.quantity)}
                             />
                         )
                     )}
@@ -49,10 +50,11 @@ function Orders({ orders }) {
 
 export default Orders;
 
+//SERVER SIDE RENDER TO PRE-FETCH ORDERS AND RENDER PAGE BEFORE USER SEES THE PAGE
 export async function getServerSideProps(context) {
     const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-    //GET THE USERS LOGGED IN credentials
+    //GET THE USERS LOGGED IN credentials - (context contains all the req, session, header  info..)
     const session = await getSession(context);
 
     if (!session) {
@@ -71,7 +73,8 @@ export async function getServerSideProps(context) {
 
     //STRIPE ORDERS
     const orders = await Promise.all(
-        stripeOrders.docs.map(async (order) => ({
+        stripeOrders.docs.map(async (order) => (
+        {
             id: order.id,
             amount: order.data().amount,
             amountShipping: order.data().amount_shipping,

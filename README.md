@@ -1,6 +1,15 @@
-# Installation Steps
-
-
+# Tecnologies used
+1. Next.js (SSR)
+    -> Next Router
+    -> Next image
+2. Redux
+3. Tailwind CSS
+4. NextAuth Authentication
+5. FakeStoreApi (For products)
+6. Heroicons svg icons
+7. Webhooks
+8. Stripe Checkout
+9. Firebase
 
 ## Using npm
 
@@ -21,8 +30,3 @@ Run commands
 2) ```yarn install```
 
 3) ```yarn run dev```
-
-
-### If you see the window below then you are set to build AMAZON 2.0!
-
-![Template Screenshot](TemplateScreenshot.jpg?raw=true "Template Screenshot")
