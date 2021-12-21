@@ -4,6 +4,8 @@ import { StarIcon } from "@heroicons/react/solid";
 import Currency from "react-currency-formatter";
 import { useDispatch } from "react-redux";
 import { addToBasket } from "../slices/basketSlice";
+import { toast } from "react-toastify";
+import SuccessAlert from "./SuccessAlert";
 
 const MAX_RATING = 5;
 const MIN_RATING = 1;
@@ -17,6 +19,13 @@ function Product({ id, title, price, description, category, image }) {
 
     const [hasPrime, setHasPrime] = useState(Math.random() < 0.5);
 
+    const notify = () =>
+        toast.success(<SuccessAlert title={title} image={image} />, {
+            pauseOnHover: false,
+            autoClose: 3000,
+            theme: "colored",
+        });
+
     const addItemToBasket = () => {
         const product = {
             id,
@@ -29,10 +38,11 @@ function Product({ id, title, price, description, category, image }) {
             hasPrime,
         };
         dispatch(addToBasket(product));
+        notify();
     };
 
     return (
-        <div className="relative flex flex-col m-5 bg-white z-30 p-10">
+        <div className="transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 relative flex flex-col m-5 bg-white z-30 p-10">
             <p className="absolute top-2 right-2 text-xs italic text-gray-400">
                 {category}
             </p>

@@ -2,6 +2,8 @@ import Head from "next/head";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
 import ProductFeed from "../components/ProductFeed";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 export default function Home({ products }) {
     return (
@@ -13,7 +15,8 @@ export default function Home({ products }) {
 
             <main className="max-w-screen-2xl mx-auto">
                 <Banner />
-                <ProductFeed products={products}/>
+                <ProductFeed products={products} />
+                <ToastContainer className="opacity-80"/>
             </main>
         </div>
     );
